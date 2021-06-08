@@ -9,14 +9,18 @@ class ngircd::params {
   # this is an array because we can have >1 Operator and Channel sections
   $config               = [
     {
-      'Global'   => {
-        'Name'   => $facts['fqdn'],
-        'Listen' => '0.0.0.0',
+      'Global' => {
+        'Name'      => $facts['fqdn'],
+        'Info'      => 'IRC Server',
+        'Listen'    => '0.0.0.0',
+        'ServerGID' => 'ngircd',
+        'ServerUID' => 'ngircd',
       },
     },
   ]
   $config_path          = '/etc/ngircd.conf'
-  $config_owner         = 'ngircd'
+  # needs to be root because systemd service isn't setup to run as proper user
+  $config_owner         = 'root'
   $config_group         = 'ngircd'
   $config_mode          = '0660'
   $config_template      = 'ngircd/etc/ngircd.conf.epp'

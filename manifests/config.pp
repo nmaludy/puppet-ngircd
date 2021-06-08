@@ -1,7 +1,11 @@
 # Profile to install + configure ngircd
 class ngircd::config (
-  String  $path               = $ngircd::config_path,
   Array[Hash] $config         = $ngircd::config,
+  String $path                = $ngircd::config_path,
+  String $owner               = $ngircd::config_owner,
+  String $group               = $ngircd::config_group,
+  String $mode                = $ngircd::config_mode,
+  String $template            = $ngircd::config_template,
   Boolean $augeas_manage      = $ngircd::config_augeas_manage,
   Array[String] $augeas_files = $ngircd::config_augeas_files,
 ) inherits ngircd{
@@ -34,5 +38,12 @@ class ngircd::config (
   #   }
   # }
 
-
+  # don't showdiff because there might be passwords in the config
+  file { $path:
+    ensure  => file,
+    owner   => $owner,
+    group   => $group,
+    mode    => $mode,
+    content => epp('ngircd/etc/ngircd.conf.epp', config => $config),
+  }
 }

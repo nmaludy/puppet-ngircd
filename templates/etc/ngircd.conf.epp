@@ -7,8 +7,9 @@
 #         Editing is definitely not recommended.
 <% $config.each |$section_hashes| { -%>
 <%   $section_hashes.each |$section, $settings_hash| { -%>
+[<%= $section %>]
 <%     $settings_hash.each |$setting, $value| { -%>
         <%= $setting %> = <%= $value %>
 <%     } -%>
-<%   } -%>
+<%   } %>
 <% } -%>

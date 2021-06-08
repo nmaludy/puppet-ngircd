@@ -40,10 +40,11 @@ class ngircd::config (
 
   # don't showdiff because there might be passwords in the config
   file { $path:
-    ensure  => file,
-    owner   => $owner,
-    group   => $group,
-    mode    => $mode,
-    content => epp('ngircd/etc/ngircd.conf.epp', config => $config),
+    ensure   => file,
+    owner    => $owner,
+    group    => $group,
+    mode     => $mode,
+    showdiff => false,
+    content  => epp('ngircd/etc/ngircd.conf.epp', config => $config),
   }
 }

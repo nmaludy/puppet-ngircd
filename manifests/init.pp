@@ -20,6 +20,6 @@ class ngircd (
 ) inherits ngircd::params {
   contain ngircd::install
   contain ngircd::config
-  contain ngircd::firewalld
+  contain ngircd::firewall
   contain ngircd::service
 }

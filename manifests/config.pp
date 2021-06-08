@@ -46,5 +46,7 @@ class ngircd::config (
     # don't show_diff because there might be passwords in the config
     show_diff => false,
     content   => epp('ngircd/etc/ngircd.conf.epp', config => $config),
+    require   => Class['ngircd::install'],
+    notify    => Class['ngircd::service'],
   }
 }

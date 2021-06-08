@@ -4,7 +4,7 @@ class ngircd::firewall (
   String  $firewalld_service = $ngircd::firewalld_service,
   String  $firewalld_ensure  = $ngircd::firewalld_ensure,
   String  $firewalld_zone    = $ngircd::firewalld_zone,
-) inherits ngirc {
+) inherits ngircd {
   if $firewalld_manage {
     firewalld_service { $firewalld_service:
       ensure => $firewalld_ensure,
